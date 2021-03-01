@@ -25,10 +25,29 @@ import { Validator, isEmail } from "@padosoft/validator";
 Per l'uso da script è consigliabile copiare il file dalla cartella node_modules in una a scelta. Una volta incluso sarà presente un oggetto globale 'padosoftValidator' con il quale richiamare le funzioni.
 
 ```javascript
-<script src="dist/padosoft-frontend-tools.js"></script>
+<script src="dist/padosoft-validator.js"></script>
 [...]
 <script>
-    console.log(padosoftValidator.Validator);
+    var validator = new padosoftValidator.Validator({
+      rules: {
+        recipient: {
+          required: false,
+          rule: (value) => {
+            return padosoftValidator.isEmail(value);
+          },
+        },
+      },
+      messages: {
+        recipient: "L'email non è valida.",
+      },
+    });
+    validator.validate({
+        recipient: "cogito@ergo.eu",
+      });
+    if(!validator.hasValidData()){
+        const errors = validator.getErrorsMessage();
+        console.log("Errori", errors);
+    }
 </script>
 ```
 
