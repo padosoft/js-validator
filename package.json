@@ -1,6 +1,6 @@
 {
   "name": "@padosoft/validator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Javascript validator.",
   "main": "dist/padosoft-validator.js",
   "scripts": {
